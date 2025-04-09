@@ -1,36 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Panel - @yield('title')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('layouts.partials.head', ['title' => 'Admin Panel'])
 </head>
 
-<body x-data="{ openSidebar: false }" class="flex bg-gray-100 min-h-screen">
-    @include('layouts.partials.navigation')
-    {{-- Mobile Sidebar (overlay) --}}
-    <div class="md:hidden fixed inset-0 z-40 bg-black bg-opacity-50" x-show="openSidebar" @click="openSidebar = false">
+<body class="min-h-screen bg-base-200 text-base-content">
+    {{-- Sidebar + Content Container --}}
+    <div class="flex min-h-screen pt-16">
+        {{-- Sidebar --}}
+        <aside class="w-64 bg-base-300 shadow-lg hidden md:block fixed inset-y-0 z-40">
+            @include('layouts.admin-sidebar')
+        </aside>
+
+        {{-- Main Content --}}
+        <div class="flex-1 md:ml-64 w-full">
+            {{-- Top Navigation (mobile toggle / optional navbar) --}}
+            @include('layouts.partials.navigation')
+
+            {{-- Flash Message --}}
+            @if (session('status'))
+                <div
+                    class="fixed top-16 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-2 rounded-md shadow z-50">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            {{-- Content --}}
+            <main class="p-6">
+                @yield('content')
+            </main>
+        </div>
     </div>
-
-    {{-- Sidebar --}}
-    <aside
-        class="fixed z-50 top-0 left-0 w-64 h-full bg-white shadow-lg p-4 transform md:relative md:translate-x-0 transition-transform duration-300 ease-in-out"
-        :class="{ '-translate-x-full': !openSidebar }">
-        @include('layouts.admin-sidebar')
-    </aside>
-
-    {{-- Main Content --}}
-    <div class="flex-1 p-6 w-full">
-        {{-- Hamburger Button --}}
-        <button class="md:hidden mb-4 text-gray-700" @click="openSidebar = !openSidebar">
-            ☰ Menu
-        </button>
-
-        @yield('content')
-    </div>
-
 </body>
-
+<!-- AOS Animation JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
 </html>

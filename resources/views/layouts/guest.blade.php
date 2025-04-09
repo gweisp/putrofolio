@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="light">
+<html lang="en" data-theme="light">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-    <title>{{ config('app.name', 'Laravel') }} - Auth</title>
-
-    @vite('resources/css/app.css')
-    <!-- Optional Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+    @include('layouts.partials.head', ['title' => 'Guest Page'])
 </head>
 
-<body class="min-h-screen bg-base-200 flex items-center justify-center font-sans">
-
+<body class="min-h-screen bg-base-100">
+    {{-- Navbar --}}
     @include('layouts.partials.navigation')
 
-    {{-- Auth Container --}}
-    <main class="w-full px-4 sm:px-6 lg:px-8">
+    {{-- Main Content --}}
+    <main class="min-h-screen pt-16 px-4 sm:px-6 lg:px-8">
         @yield('content')
     </main>
-
 </body>
+<!-- AOS Animation JS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
 </html>
