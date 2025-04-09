@@ -1,0 +1,53 @@
+databases:
+  - name: mysql-db
+    databaseName: laravel_db
+    user: laravel_user
+
+services:
+  - type: web
+    name: laravel-app
+    env: php
+    plan: free
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:clear
+      php artisan key:generate
+      php artisan migrate --force || true
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_NAME
+        value: Laravel
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://laravel-app.onrender.com
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: debug
+      - key: DB_CONNECTION
+        value: mysql
+      - fromDatabase:
+          name: mysql-db
+          property: host
+        key: DB_HOST
+      - fromDatabase:
+          name: mysql-db
+          property: port
+        key: DB_PORT
+      - fromDatabase:
+          name: mysql-db
+          property: database
+        key: DB_DATABASE
+      - fromDatabase:
+          name: mysql-db
+          property: user
+        key: DB_USERNAME
+      - fromDatabase:
+          name: mysql-db
+          property: password
+        key: DB_PASSWORD
