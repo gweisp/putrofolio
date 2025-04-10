@@ -1,27 +1,57 @@
 @extends('layouts.user')
 
 @section('content')
-    <section class="min-h-screen pt-24 px-6 bg-base-100">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            {{-- Foto pribadi --}}
-            <div class="flex justify-center">
-                <img src="{{ asset('images/profil.jpg') }}" alt="Foto Saya"
-                    class="w-64 h-64 object-cover rounded-full shadow-md ring-4 ring-primary">
+    <div class="about-section relative overflow-hidden py-24" id="about">
+        {{-- Animated Gradient Background --}}
+        <div
+            class="absolute inset-0 z-0 animate-gradient bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900 opacity-10 blur-3xl">
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white" data-aos="fade-up">
+                Tentang Saya
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                {{-- Ilustrasi --}}
+                <div class="text-center" data-aos="fade-right" data-aos-delay="100">
+                    <img src="{{ asset('images/profil.jpg') }}" alt="Tentang Saya"
+                        class="w-full max-w-sm mx-auto rounded-lg shadow-md dark:invert parallax-element">
+                </div>
+
+                {{-- Deskripsi --}}
+                <div class="max-w-xl text-gray-700 dark:text-gray-300 space-y-4 md:px-4" data-aos="fade-left"
+                    data-aos-delay="200">
+                    <p>Saya adalah seorang <strong>UI/UX Designer</strong>, <strong>Web Developer</strong>, dan
+                        <strong>Content Creator</strong> yang memiliki passion besar dalam dunia digital dan teknologi.</p>
+                    <p>Berpengalaman dalam mengelola project desain, mengembangkan aplikasi berbasis web dengan Laravel, dan
+                        mengedepankan user experience yang solid.</p>
+                    <p>Saya percaya bahwa desain yang baik adalah yang tidak hanya enak dilihat, tapi juga nyaman digunakan.
+                    </p>
+                </div>
             </div>
 
-            {{-- Deskripsi --}}
-            <div class="space-y-6">
-                <h2 class="text-4xl font-bold text-primary">Tentang Saya</h2>
-                <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                    Halo! Saya Putra, seorang desainer grafis, UI/UX designer, dan web developer. Saya senang menciptakan
-                    solusi visual yang menarik dan fungsional dengan pendekatan estetika dan pengalaman pengguna.
-                </p>
-                <ul class="text-gray-600 dark:text-gray-400 space-y-2">
-                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> UI/UX Design</li>
-                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Web Development (Laravel)</li>
-                    <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Branding & Desain Grafis</li>
-                </ul>
+            {{-- Value Section --}}
+            <div class="mt-20 grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition" data-aos="flip-left"
+                    data-aos-delay="300">
+                    <i class="fas fa-lightbulb text-primary text-3xl mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2">Kreatif</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Solusi unik & inovatif untuk setiap tantangan.</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition" data-aos="flip-up"
+                    data-aos-delay="500">
+                    <i class="fas fa-code text-primary text-3xl mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2">Teknis</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Integrasi estetika desain dan logika koding.</p>
+                </div>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition"
+                    data-aos="flip-right" data-aos-delay="700">
+                    <i class="fas fa-users text-primary text-3xl mb-3"></i>
+                    <h3 class="font-semibold text-lg mb-2">Kolaboratif</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Terbiasa kerja bareng tim lintas divisi.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

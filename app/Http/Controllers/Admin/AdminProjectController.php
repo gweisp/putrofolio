@@ -37,7 +37,7 @@ class AdminProjectController extends Controller
         Project::create($validated);
 
         // Langsung arahkan ke dashboard admin
-        return redirect()->route('admin.dashboard')->with('success', 'Project berhasil ditambahkan.');
+        return redirect()->route('projects.index')->with('success', 'Project berhasil ditambahkan.');
     }
 
     public function edit(Project $project)

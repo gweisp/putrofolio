@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $projects = Project::latest()->take(4)->get(); // ambil 3 project terbaru
+        $projects = Project::latest()->take(6)->get(); // ambil 3 project terbaru
         return view('home', compact('projects'));
     }
 }

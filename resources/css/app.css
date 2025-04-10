@@ -2,3 +2,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease forwards;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.8s ease forwards;
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-in-up {
+    animation: fade-in-up 0.8s ease forwards;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientFlow 10s ease infinite;
+}
+
+.parallax-element {
+    transform: translateZ(0); /* for GPU acceleration */
+    will-change: transform;
+}

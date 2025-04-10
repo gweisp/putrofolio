@@ -1,4 +1,10 @@
+<style>
+    .nav-link {
+        @apply text-gray-700 dark:text-gray-200 hover:text-blue-600 transition font-medium;
+    }
+</style>
 <nav class="navbar bg-base-100 fixed top-0 z-50 shadow-md">
+
     <div class="container mx-auto flex justify-between items-center px-4">
         <div class="flex items-center gap-2">
             <a href="{{ url('/') }}" class="text-xl font-bold text-primary">Putroofolio</a>
@@ -52,7 +58,7 @@
                     </svg>
                 </label>
                 <ul tabindex="0"
-                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52 right-0">
+                    class="menu menu-l dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52 right-0">
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ route('about') }}">About</a></li>
                     <li><a href="{{ route('skills') }}">Skills</a></li>
@@ -77,10 +83,40 @@
             </div>
         </div>
     </div>
-</nav>
 
-<style>
-    .nav-link {
-        @apply text-gray-700 dark:text-gray-200 hover:text-blue-600 transition font-medium;
-    }
-</style>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('.scroll-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>

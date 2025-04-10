@@ -28,4 +28,22 @@ class ContactController extends Controller
 
         return back()->with('success', 'Pesan kamu berhasil dikirim!');
     }
+
+    public function store(Request $request)
+    {
+        // Validation
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Store in database (if using a model)
+        Message::create($validated);
+
+        // Or send email (if that's your purpose)
+        // Mail::to('your@email.com')->send(new ContactFormMail($validated));
+
+        return back()->with('success', 'Thank you for your message!');
+    }
 }
